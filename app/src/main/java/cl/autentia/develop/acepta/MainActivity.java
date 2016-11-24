@@ -1,14 +1,17 @@
 package cl.autentia.develop.acepta;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button second,third;
+    private static final int REQUEST_CODE_FIRMAR_DOCUMENTO = 10001;
+
+    Button second, third;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +24,38 @@ public class MainActivity extends AppCompatActivity {
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),SecondActivity.class));
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
             }
         });
 
         third.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),ThirdActivity.class));
+                startActivityForResult(new Intent("cl.autentia.entel.firmadocumento"), REQUEST_CODE_FIRMAR_DOCUMENTO);
             }
         });
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_FIRMAR_DOCUMENTO) {
+            if (resultCode == RESULT_OK) {
+
+                Bundle bundle = data.getExtras();
+
+                if (bundle == null) {
+                    new AlertDialog.Builder(this).setMessage("Respuesta de Firmar Documento vacía ").setPositiveButton("Aceptar", null).create().show();
+                    return;
+                }
+
+                new AlertDialog.Builder(this).setMessage(bundle.getString("result")).setPositiveButton("Aceptar", null).create().show();
+            } else {
+                new AlertDialog.Builder(this).setMessage("Error en la llamada Firmar Documento").setPositiveButton("Aceptar", null).create().show();
+            }
+        }
+    }
 }
+
