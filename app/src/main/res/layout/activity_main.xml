@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cl.autentia.develop.acepta.MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text="Ir a Segunda"
+            android:alpha="0.6"
+            android:background="@color/accent"
+            android:id="@+id/sec_but"
+            android:layout_width="match_parent"
+            android:layout_height="260dp" />
+
+        <Button
+            android:text="Ir a Tercera"
+            android:alpha="0.6"
+            android:background="@color/accent"
+            android:id="@+id/thi_but"
+            android:layout_width="match_parent"
+            android:layout_height="260dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
