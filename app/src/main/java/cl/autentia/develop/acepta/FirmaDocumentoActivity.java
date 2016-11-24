@@ -59,7 +59,7 @@ public class FirmaDocumentoActivity extends AppCompatActivity {
 
                 final CharSequence[] newCharSequences = fcrReturn.getCharSequenceFromList();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(FirmaDocumentoActivity.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(FirmaDocumentoActivity.this);
                 builder.setTitle("Establecer Respuesta");
                 builder.setSingleChoiceItems(newCharSequences, -1, new DialogInterface.OnClickListener() {
                     @Override
@@ -78,9 +78,10 @@ public class FirmaDocumentoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        if (fcrReturn.description == null)
+                        if (fcrReturn.description == null) {
+                            builder.create().show();
                             return;
-
+                        }
 
                         try {
 
@@ -145,13 +146,13 @@ public class FirmaDocumentoActivity extends AppCompatActivity {
             responseList.add(new FirmaContratoResponse(FC_ERROR_DEL_LECTOR_BIOMETRICO, "Error en lector biométrico"));
             responseList.add(new FirmaContratoResponse(FC_ERROR_DESCARGA_DOCUMENTOS, "Error en descarga de documentos"));
             responseList.add(new FirmaContratoResponse(FC_ERROR_EN_GENERACION_DE_FIRMA, "Error en generación de firma"));
-            responseList.add(new FirmaContratoResponse(FC_IDENTIFICACION_CON_PROBLEMAS, "Identificación con problemas"));
+            responseList.add(new FirmaContratoResponse(FC_IDENTIFICACION_CON_PROBLEMAS, "Error en Identificación"));
             responseList.add(new FirmaContratoResponse(FC_IDENTIFICACION_NEGATIVA, "Identificación negativa"));
             responseList.add(new FirmaContratoResponse(FC_PROBLEMAS_VERIFICACION_DE_HUELLA, "Error al verificar huella"));
             responseList.add(new FirmaContratoResponse(FC_FALLA_DE_PUBLICACION, "Falla de publicación"));
-            responseList.add(new FirmaContratoResponse(FC_IDENTIFICACION_ANULADA, "Indentificación anulada"));
+            responseList.add(new FirmaContratoResponse(FC_IDENTIFICACION_ANULADA, "Identificación anulada"));
             responseList.add(new FirmaContratoResponse(FC_CONTRATO_RECHAZADO, "Contrato rechazado"));
-            responseList.add(new FirmaContratoResponse(FC_ERROR_GENERICO, "Error genérico, detalle:"));
+            responseList.add(new FirmaContratoResponse(FC_ERROR_GENERICO, "Error genérico, detalle: NotFoundException...."));
             return responseList;
         }
 
