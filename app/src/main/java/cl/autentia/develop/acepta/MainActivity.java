@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_FIRMAR_DOCUMENTO = 10001;
+    private static final int REQUEST_CODE_DESCARGA_DOCUMENTO = 10003;
 
     Button second, third;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+                startActivityForResult(new Intent("cl.autentia.entel.descargadocumento"),REQUEST_CODE_DESCARGA_DOCUMENTO);
             }
         });
 
@@ -41,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Bundle bundle = data.getExtras();
+
         if (requestCode == REQUEST_CODE_FIRMAR_DOCUMENTO) {
             if (resultCode == RESULT_OK) {
-
-                Bundle bundle = data.getExtras();
 
                 if (bundle == null) {
                     new AlertDialog.Builder(this).setMessage("Respuesta de Firmar Documento vacía ").setPositiveButton("Aceptar", null).create().show();
@@ -54,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(this).setMessage(bundle.getString("result")).setPositiveButton("Aceptar", null).create().show();
             } else {
                 new AlertDialog.Builder(this).setMessage("Error en la llamada Firmar Documento").setPositiveButton("Aceptar", null).create().show();
+            }
+        }
+
+        if (requestCode == REQUEST_CODE_DESCARGA_DOCUMENTO) {
+            if (resultCode == RESULT_OK) {
+
+                if (bundle == null) {
+                    new AlertDialog.Builder(this).setMessage("Sin datos ").setPositiveButton("Aceptar", null).create().show();
+                    return;
+                }
+
+                new AlertDialog.Builder(this).setMessage(bundle.getString("result")+"\nExito al descargar").setPositiveButton("Aceptar", null).create().show();
+            } else {
+                new AlertDialog.Builder(this).setMessage(bundle.getString("result")+"\nError al descargar documento").setPositiveButton("Aceptar", null).create().show();
             }
         }
     }
