@@ -42,7 +42,7 @@ public class FirmaDocumentoActivity extends AppCompatActivity {
 
 
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -78,9 +78,13 @@ public class FirmaDocumentoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        if (fcrReturn.description == null)
+                            return;
+
+
                         try {
 
-                            JSONObject json = new JSONObject(String.format("{\"Code\":\"%s\",\"Description\":\"%s\"}", fcrReturn.code, fcrReturn.description));
+                            JSONObject json = new JSONObject(String.format("{\"Erc\":%s,\"ErcText\":\"%s\"}", fcrReturn.code, fcrReturn.description));
 
                             progressDialog.dismiss();
 
@@ -124,7 +128,8 @@ public class FirmaDocumentoActivity extends AppCompatActivity {
         public String description;
 
         public FirmaContratoResponse() {
-
+            this.code = -1;
+            this.description = null;
         }
 
         public FirmaContratoResponse(int code, String description) {
