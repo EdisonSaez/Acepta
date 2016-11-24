@@ -14,7 +14,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity">
+        <activity android:name=".DescargaDocumentosActivity">
             <intent-filter>
                 <action android:name="cl.autentia.entel.descargadocumento" />
                 <category android:name="android.intent.category.DEFAULT" />

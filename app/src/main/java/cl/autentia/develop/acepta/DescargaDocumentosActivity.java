@@ -28,7 +28,7 @@ import java.util.TimerTask;
 import static android.R.attr.button;
 
 
-public class SecondActivity extends AppCompatActivity {
+public class DescargaDocumentosActivity extends AppCompatActivity {
     private ProgressDialog progress;
     private String KEY_EXITO = "0";
     private String DESC_EXITO = "MD_EXITO";
@@ -105,7 +105,7 @@ public class SecondActivity extends AppCompatActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
 
-                            JSONObject json = new JSONObject(String.format("{\"Code\":\"%s\",\"Description\":\"%s\"}", KEY_EXITO , DESC_EXITO));
+                            JSONObject json = new JSONObject(String.format("{\"Erc\":\"%s\",\"ErcText\":\"%s\"}", KEY_EXITO , DESC_EXITO));
 
                             Intent intent = new Intent();
                             intent.putExtra("result", json.toString());
@@ -125,7 +125,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 try {
 
-                    JSONObject json = new JSONObject(String.format("{\"Code\":\"%s\",\"Description\":\"%s\"}", KEY_ERROR, DESC_ERROR));
+                    JSONObject json = new JSONObject(String.format("{\"Erc\":\"%s\",\"ErcText\":\"%s\"}", KEY_ERROR, DESC_ERROR));
 
                     Intent intent = new Intent();
                     intent.putExtra("result", json.toString());

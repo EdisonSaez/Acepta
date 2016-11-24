@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                new AlertDialog.Builder(this).setMessage(bundle.getString("result")+"\nExito al descargar").setPositiveButton("Aceptar", null).create().show();
+                new AlertDialog.Builder(this).setMessage(bundle.getString("result")).setPositiveButton("Aceptar", null).create().show();
             } else {
-                new AlertDialog.Builder(this).setMessage(bundle.getString("result")+"\nError al descargar documento").setPositiveButton("Aceptar", null).create().show();
+                new AlertDialog.Builder(this).setMessage(bundle.getString("result")).setPositiveButton("Aceptar", null).create().show();
             }
         }
     }
